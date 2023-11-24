@@ -2,7 +2,7 @@ pipeline{
     agent any
     tools {
         // Defina a versão do JDK para 7.9.2-community
-        jdk 'Java_7.9.2-community'
+        jdk 'JAVA_LOCAL_8'
     }
     stages{
         stage ('Build Backend'){
