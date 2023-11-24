@@ -11,5 +11,16 @@ pipeline{
                 bat 'mvn test'
             }
         }
+        stage ('Sonar Analysis'){
+            environment{
+                scannerHome = tool 'SONAR_SCANNER'
+            }
+            steps{
+                withSonarQubeEnv('SONAR_LOCAL'){
+                    bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=58f7f766d1cfcdd0ebea523ed821a2e22d72dc45 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"
+                }   
+            }
+        }
     }
 }
+
